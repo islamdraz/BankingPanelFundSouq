@@ -11,9 +11,9 @@ namespace BankingPanel.Domain.ClientAggregate
         public string LastName { get; private set; }
         public string PersonalId { get; private set; }
         public byte[] Photo { get; private set; }
+        public Sex Sex { get; private set; }
         public PhoneNumber PhoneNumber { get; private set; }
         public Address Address { get; private set; }
-
         public Client(CreateClientInput input, Guid? id = null) : base(id ?? Guid.NewGuid())
         {            
             Email = input.Email;

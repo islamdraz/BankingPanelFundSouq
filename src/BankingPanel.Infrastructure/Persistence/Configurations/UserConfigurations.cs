@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Newtonsoft.Json;
 
 
-namespace UserManagement.Infrastructure.Persistence.Configurations;
+namespace BankingPanel.Infrastructure.Persistence.Configurations;
 
 public class UserConfigurations : IEntityTypeConfiguration<ApplicationUser>
 {
@@ -21,7 +21,7 @@ public class UserConfigurations : IEntityTypeConfiguration<ApplicationUser>
         builder.Property(u => u.Active);
 
         builder.Property(u => u.Roles)
-               .HasConversion( v=> JsonConvert.SerializeObject(v), 
+               .HasConversion(v => JsonConvert.SerializeObject(v),
                                v => JsonConvert.DeserializeObject<List<string>>(v));
 
         builder.Property("_passwordHash")
