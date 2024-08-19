@@ -1,9 +1,22 @@
+using BankingPanel.Api.Controllers.Commons.Mapping;
+using BankingPanel.Infrastructure;
+using BankingPanel.Application;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
+using BankingPanel.Api.Controllers.Commons.Errors;
+
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddApplication();
+builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.AddControllers();
+builder.Services.AddMappings();
+
+builder.Services.AddSingleton<ProblemDetailsFactory, BankingPanelProblemDetailsFactory>();
 
 var app = builder.Build();
 
@@ -35,6 +48,13 @@ app.MapGet("/weatherforecast", () =>
 })
 .WithName("GetWeatherForecast")
 .WithOpenApi();
+
+app.UseHttpsRedirection();
+
+app.UseExceptionHandler("/error");
+app.UseAuthorization();
+
+app.MapControllers();
 
 app.Run();
 
