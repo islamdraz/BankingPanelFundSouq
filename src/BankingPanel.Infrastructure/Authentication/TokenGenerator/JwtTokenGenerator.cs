@@ -26,18 +26,23 @@ public class JwtTokenGererator : IJwtTokenGenerator
                 SecurityAlgorithms.HmacSha256);
 
 
-        var claims = new[]{
+        var claims = new List<Claim>{
             new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
             new Claim(JwtRegisteredClaimNames.GivenName, user.FirstName),
             new Claim(JwtRegisteredClaimNames.FamilyName, user.LastName),
-            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
         };
 
+        foreach (var role in user.Roles)
+        {
+            claims.Add(new Claim(ClaimTypes.Role, role));
+        }
         var securityToken = new JwtSecurityToken(
             issuer: _jwtSettings.Issuer,
             audience: _jwtSettings.Audience,
             expires: DateTime.UtcNow.AddMinutes(_jwtSettings.TokenExpirationInMinutes),
             claims: claims,
+                        
             signingCredentials: signingCredentials
         );
 
