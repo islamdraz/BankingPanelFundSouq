@@ -1,9 +1,4 @@
-
-using BankingPanel.Application.Authentication.Common;
-using BankingPanel.Application.Authentication.Login;
-using BankingPanel.Application.Authentication.Register;
 using BankingPanel.Application.Clients.Commands.CreateClient;
-using BankingPanel.Contracts.Authentication;
 using BankingPanel.Contracts.Client;
 using BankingPanel.Contracts.Common;
 using BankingPanel.Domain.ClientAggregate;
@@ -31,11 +26,13 @@ public class ClientMappingConfig : IRegister
         config.NewConfig<PagedResultDto<Client>, PagedResponse<GetClientDetailsResponse>>();
 
         config.NewConfig<Client, CreateClientResponse>()
+        // Map Address Value object
         .Map(dest => dest.sex, src => src.Sex.ToString())
         .Map(dest => dest.City, src => src.Address.City )
         .Map(dest => dest.Street, src => src.Address.Street)
         .Map(dest => dest.ZibCode, src => src.Address.ZibCode)
         .Map(dest => dest.Country, src => src.Address.Country)
+        // Map phone Number Value object
         .Map(dest => dest.Number, src => src.PhoneNumber.Number)
         .Map(dest => dest.CountryCode, src => src.PhoneNumber.CountryCode);
 
