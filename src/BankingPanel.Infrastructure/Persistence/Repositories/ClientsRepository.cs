@@ -22,9 +22,8 @@ public class ClientsRepository : IClientsRepository
 
     public async Task<bool> ExistsByPersonalIdAsync(string PersonalId)
     {
-      var xx =  await _dbContext.Clients.FirstOrDefaultAsync(x=> x.PersonalId == PersonalId);
+      return await _dbContext.Clients.AnyAsync(x=> x.PersonalId == PersonalId);
 
-        return xx != null;
     }
 
     public async Task<Client?> GetByIdAsync(Guid clientId)
