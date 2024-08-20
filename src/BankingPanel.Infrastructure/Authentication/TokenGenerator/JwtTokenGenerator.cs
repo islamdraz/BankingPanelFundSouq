@@ -7,7 +7,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using UserManagement.Api.Authentication.TokenGenerator;
 
-namespace BuberDinner.Infrastructure.Authentication;
+namespace BankingPanel.Infrastructure.Authentication.TokenGenerator;
 
 public class JwtTokenGererator : IJwtTokenGenerator
 {
@@ -24,9 +24,9 @@ public class JwtTokenGererator : IJwtTokenGenerator
         var signingCredentials = new SigningCredentials(
             new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.Secret)),
                 SecurityAlgorithms.HmacSha256);
-            
-        
-        var claims = new []{
+
+
+        var claims = new[]{
             new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
             new Claim(JwtRegisteredClaimNames.GivenName, user.FirstName),
             new Claim(JwtRegisteredClaimNames.FamilyName, user.LastName),
@@ -35,8 +35,8 @@ public class JwtTokenGererator : IJwtTokenGenerator
 
         var securityToken = new JwtSecurityToken(
             issuer: _jwtSettings.Issuer,
-            audience:_jwtSettings.Audience,
-            expires:DateTime.UtcNow.AddMinutes(_jwtSettings.TokenExpirationInMinutes),            
+            audience: _jwtSettings.Audience,
+            expires: DateTime.UtcNow.AddMinutes(_jwtSettings.TokenExpirationInMinutes),
             claims: claims,
             signingCredentials: signingCredentials
         );

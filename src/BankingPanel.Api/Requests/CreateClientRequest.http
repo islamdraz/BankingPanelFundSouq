@@ -1,0 +1,27 @@
+@host = http://localhost:5262
+
+Post {{host}}/client/
+Content-Type: application/json
+accept: */*
+
+{
+ "email": "idraz@test.com",
+  "firstName": "Islam",
+  "lastName": "draz",
+  "personalId": "12345678912",
+  "sex": "Male",
+  "country": "string",
+  "city": "string",
+  "street": "string",
+  "zibCode": "string",
+  "countryCode": "string",
+  "number": "string",
+  "bankAccounts": [
+    {
+      "accountNumber": "string",
+      "accountCurrency": "EGP"
+    }
+  ],
+  "photo": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAB0lEQVR42mP8/wcAAwAB/GOxFAAAAABJRU5ErkJggg=="
+}
+###

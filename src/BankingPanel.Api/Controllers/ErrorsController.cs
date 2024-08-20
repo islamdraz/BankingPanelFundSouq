@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace BuberDinner.Api.Controllers;
+namespace BankingPanel.Api.Controllers;
 
 public class ErrorsController : ControllerBase
 {

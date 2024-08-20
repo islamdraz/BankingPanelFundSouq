@@ -9,7 +9,8 @@ namespace BankingPanel.Infrastructure.Persistence.Configurations;
 public class ClientConfigurations : IEntityTypeConfiguration<Client>
 {
     public void Configure(EntityTypeBuilder<Client> builder)
-    {
+    {   
+        builder.ToTable(nameof(Client));
         builder.HasKey(u => u.Id);
 
         builder.Property(u => u.FirstName).HasMaxLength(60);

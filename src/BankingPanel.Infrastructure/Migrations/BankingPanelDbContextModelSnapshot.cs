@@ -49,7 +49,7 @@ namespace BankingPanel.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ApplicationUsers");
+                    b.ToTable("ApplicationUsers", (string)null);
                 });
 
             modelBuilder.Entity("BankingPanel.Domain.ClientAggregate.BankAccount", b =>
@@ -74,7 +74,7 @@ namespace BankingPanel.Infrastructure.Migrations
 
                     b.HasIndex("ClientId");
 
-                    b.ToTable("BankAccount");
+                    b.ToTable("BankAccount", (string)null);
                 });
 
             modelBuilder.Entity("BankingPanel.Domain.ClientAggregate.Client", b =>
@@ -113,7 +113,7 @@ namespace BankingPanel.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Client");
+                    b.ToTable("Client", (string)null);
                 });
 
             modelBuilder.Entity("BankingPanel.Domain.ClientAggregate.BankAccount", b =>
@@ -127,7 +127,7 @@ namespace BankingPanel.Infrastructure.Migrations
 
             modelBuilder.Entity("BankingPanel.Domain.ClientAggregate.Client", b =>
                 {
-                    b.OwnsOne("BankingPanel.Domain.Common.ValueObjects.Address", "Address", b1 =>
+                    b.OwnsOne("BankingPanel.Domain.ClientAggregate.Client.Address#BankingPanel.Domain.Common.ValueObjects.Address", "Address", b1 =>
                         {
                             b1.Property<Guid>("ClientId")
                                 .HasColumnType("TEXT");
@@ -150,13 +150,13 @@ namespace BankingPanel.Infrastructure.Migrations
 
                             b1.HasKey("ClientId");
 
-                            b1.ToTable("Client");
+                            b1.ToTable("Client", (string)null);
 
                             b1.WithOwner()
                                 .HasForeignKey("ClientId");
                         });
 
-                    b.OwnsOne("BankingPanel.Domain.Common.ValueObjects.PhoneNumber", "PhoneNumber", b1 =>
+                    b.OwnsOne("BankingPanel.Domain.ClientAggregate.Client.PhoneNumber#BankingPanel.Domain.Common.ValueObjects.PhoneNumber", "PhoneNumber", b1 =>
                         {
                             b1.Property<Guid>("ClientId")
                                 .HasColumnType("TEXT");
@@ -171,7 +171,7 @@ namespace BankingPanel.Infrastructure.Migrations
 
                             b1.HasKey("ClientId");
 
-                            b1.ToTable("Client");
+                            b1.ToTable("Client", (string)null);
 
                             b1.WithOwner()
                                 .HasForeignKey("ClientId");

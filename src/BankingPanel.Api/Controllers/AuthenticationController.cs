@@ -2,7 +2,6 @@ using BankingPanel.Application.Authentication.Common;
 using BankingPanel.Application.Authentication.Login;
 using BankingPanel.Application.Authentication.Register;
 using BankingPanel.Contracts.Authentication;
-using BuberDinner.Api.Controllers;
 using ErrorOr;
 using MapsterMapper;
 using MediatR;

@@ -3,9 +3,16 @@ using BankingPanel.Infrastructure;
 using BankingPanel.Application;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using BankingPanel.Api.Controllers.Commons.Errors;
+using Serilog;
 
 
 var builder = WebApplication.CreateBuilder(args);
+
+Log.Logger = new LoggerConfiguration()
+    .ReadFrom.Configuration(builder.Configuration)
+    .CreateLogger();
+
+builder.Host.UseSerilog();
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -31,7 +38,7 @@ app.UseHttpsRedirection();
 
 
 app.UseHttpsRedirection();
-
+app.UseSerilogRequestLogging();
 app.UseExceptionHandler("/error");
 app.UseAuthorization();
 

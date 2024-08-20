@@ -1,8 +1,8 @@
 using BankingPanel.Application.Common.Interfaces;
 using BankingPanel.Domain.Common.Interfaces;
+using BankingPanel.Infrastructure.Authentication.TokenGenerator;
 using BankingPanel.Infrastructure.Persistence;
 using BankingPanel.Infrastructure.Persistence.Repositories;
-using BuberDinner.Infrastructure.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -42,6 +42,7 @@ public static class DependencyInjection
 
 
         services.AddScoped<IUsersRepository, UsersRepository>();
+        services.AddScoped<IClientsRepository, ClientsRepository>();
         services.AddScoped<IJwtTokenGenerator, JwtTokenGererator>();
         services.AddSingleton<IPasswordHasher, PasswordHasher>();
 

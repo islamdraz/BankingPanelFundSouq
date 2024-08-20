@@ -4,16 +4,16 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Authorization;
 using BankingPanel.Api.Controllers.Commons.Errors.Http;
 
-namespace BuberDinner.Api.Controllers;
+namespace BankingPanel.Api.Controllers;
 
 [Authorize]
 [ApiController]
-public class ApiController:ControllerBase
+public class ApiController : ControllerBase
 {
     protected IActionResult Problem(List<Error> errors)
     {
         // means their an erorr but this error is not something you throw 
-        if(errors.Count is 0)
+        if (errors.Count is 0)
         {
             return Problem();
         }
