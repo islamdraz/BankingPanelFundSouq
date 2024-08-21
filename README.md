@@ -1,5 +1,5 @@
 # Banking Panel
-![Logo or Screenshot](solution structure.png)
+![Logo or Screenshot](./solution%20structure.png)
 
 ## Table of Contents
 
