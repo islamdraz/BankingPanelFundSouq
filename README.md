@@ -25,15 +25,13 @@
 - sqllite database 
 
 ## Getting Started
-Application database file is aleady attached to project 
-import Basic Postman collection 
-register user 
-login with registered user
-use the token to create client and search on clients 
+- Application database file is already attached to project 
+- import Basic Postman collection 
+    - register user 
+    - login with registered user
+    - use the token to create client and search on clients 
 
 ### Prerequisites
-
-List the software and tools that are required.
 
 - .NET SDK (e.g., 8.0)
 - [Visual Studio](https://visualstudio.microsoft.com/) or [Visual Studio Code](https://code.visualstudio.com/)
