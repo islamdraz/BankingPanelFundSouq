@@ -3,22 +3,22 @@
 Post {{host}}/client/
 Content-Type: application/json
 accept: */*
-
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzZDkxZGNiNS02OWZmLTQ5MGUtOWFlMS00MWQxNmIzYzc5OGIiLCJnaXZlbl9uYW1lIjoibW9oYW1lZCIsImZhbWlseV9uYW1lIjoiQWxpIiwianRpIjoiYzg5MTA1ZTMtZmRmYi00ZDAwLWFmOGUtNDdjYzM1NDViYjNiIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiYWRtaW4iLCJleHAiOjE3MjQyODA4NzAsImlzcyI6Ik9BdXRoIiwiYXVkIjoiQmFua2luZyJ9.o3igWE1s4KBPHDMUb65n4nYyZaREul_ozhOlV2Li5Sk
 {
- "email": "idraz@test.com",
+ "email": "idraz2@test.com",
   "firstName": "Islam",
   "lastName": "draz",
-  "personalId": "12645678919",
+  "personalId": "12895678719",
   "sex": "Male",
-  "country": "string",
-  "city": "string",
-  "street": "string",
-  "zibCode": "string",
-  "countryCode": "string",
-  "number": "string",
+  "country": "Egypt",
+  "city": "Cairo",
+  "street": "6 October",
+  "zibCode": "6666",
+  "countryCode": "+2",
+  "number": "2331234567",
   "bankAccounts": [
     {
-      "accountNumber": "string",
+      "accountNumber": "12121212121",
       "accountCurrency": "EGP"
     }
   ],

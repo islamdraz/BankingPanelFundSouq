@@ -26,9 +26,44 @@ public class ClientsRepository : IClientsRepository
 
     }
 
+    public async Task<bool> ExistsByEmailAsync(string email)
+    {
+        return await _dbContext.Clients.AnyAsync(x => x.Email.ToLower() == email.Trim().ToLower());
+
+    }
+
     public async Task<Client?> GetByIdAsync(Guid clientId)
     {
-        return await _dbContext.Clients.FindAsync( clientId);
+        return await _dbContext.Clients.Include(x=>x.BankAccounts).FirstOrDefaultAsync(x=> x.Id == clientId);
+    }
+
+    public async Task<PagedResultDto<Client>> SearchClientsAsync(string searchText = "", string sortBy = "Id", int pageSize = 10, bool sortDescending = false, int pageIndex = 0)
+    {
+        var query = _dbContext.Clients.Include(x => x.BankAccounts).AsQueryable();
+
+
+        // Apply filtering
+        if (!string.IsNullOrEmpty(searchText))
+        {
+            query = query.Where(x => x.FirstName.ToLower().Contains(searchText.Trim().ToLower()) || x.LastName.ToLower().Contains(searchText.Trim().ToLower()) || x.PersonalId.ToLower().Contains(searchText.Trim().ToLower()));
+        }
+
+        // Apply sorting
+        if (!string.IsNullOrEmpty(sortBy))
+        {
+            query = sortDescending
+                ? query.OrderByDescending(e => EF.Property<object>(e, sortBy))
+                : query.OrderBy(e => EF.Property<object>(e, sortBy));
+        }
+
+        // Get the total count
+        var totalCount = await query.CountAsync();
+
+        // Apply paging
+        var items = await query.Skip(pageIndex * pageSize).Take(pageSize).ToListAsync();
+
+        return new PagedResultDto<Client>(items, pageIndex, pageSize, totalCount);
+
     }
 
     public async Task UpdateAsync(Client client)

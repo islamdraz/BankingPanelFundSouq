@@ -18,11 +18,23 @@ public class CreateClientCommandHandler : IRequestHandler<CreateClientCommand, E
         if( await _clientRepository.ExistsByPersonalIdAsync(request.PersonalId))
         {
             return ClientErrors.ClientPersonalIdIsDuplicated;
-        }        
+        }
 
-        var clientAddInput = new CreateClientInput(request.Email, request.FirstName, request.LastName, request.PersonalId, request.Photo, request.PhoneNumber, request.Address);
+        if (await _clientRepository.ExistsByEmailAsync(request.Email))
+        {
+            return ClientErrors.ClientEmailIsDuplicated;
+        }
+
+        // ToDo Add use mapper to map from CreateClientCommand to CreateClientInput
+        // use Input to simplify the Client object construction
+        var clientAddInput = new CreateClientInput(request.Email, request.FirstName, request.LastName, request.PersonalId, request.Sex, request.Photo, request.PhoneNumber, request.Address);
         
+        // Create client 
         var client = new Client(clientAddInput);
+
+        // add BankAccounts 
+        request.BankAccounts.ForEach(account => client.AddBankAccount( new BankAccount(account.AccountNumber, account.AccountCurrency)));
+       
 
         await _clientRepository.AddClientAsync(client);
 

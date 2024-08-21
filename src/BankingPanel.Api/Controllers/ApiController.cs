@@ -17,6 +17,7 @@ public class ApiController : ControllerBase
         {
             return Problem();
         }
+        // return my domain validation errors 
         if (errors.All(error => error.Type == ErrorType.Validation))
         {
             return ValidationProblem(errors);

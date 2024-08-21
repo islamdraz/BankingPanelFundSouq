@@ -13,6 +13,7 @@ using Microsoft.Extensions.Options;
 
 namespace BankingPanel.Api.Controllers.Commons.Errors;
 
+
 internal sealed class BankingPanelProblemDetailsFactory : ProblemDetailsFactory
 {
     private readonly ApiBehaviorOptions _options;
@@ -98,6 +99,9 @@ internal sealed class BankingPanelProblemDetailsFactory : ProblemDetailsFactory
             problemDetails.Extensions["traceId"] = traceId;
         }
 
+
+        // Adding our custom error property to the httpCotext
+        // Used to hold the validation errors raised from domain 
         var errors = httpContext.Items[HttpContextItemKeys.Errors] as List<Error>;
 
         if (errors is not null)
