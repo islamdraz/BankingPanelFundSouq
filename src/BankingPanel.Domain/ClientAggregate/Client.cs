@@ -23,6 +23,7 @@ namespace BankingPanel.Domain.ClientAggregate
             Photo = input.Photo;
             PhoneNumber = input.PhoneNumber;
             Address = input.Address;
+            Sex = input.Sex;
         }        
 
         private List<BankAccount> _bankAccounts = new List<BankAccount>();

@@ -24,9 +24,9 @@ public class ApplicationUser : AggregateRoot
 
 
      public bool IsCorrectPasswordHash(string password, IPasswordHasher passwordHasher)
- {
+    {
      return passwordHasher.IsCorrectPassword(password, _passwordHash);
- }
+    }
 
     public void ChangePassword(string passwordHash)
     {
